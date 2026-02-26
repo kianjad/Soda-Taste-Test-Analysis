@@ -215,9 +215,28 @@ p_values <- data.frame(
 )
 
 kable(p_values, col.names = c("Factor", "P-Value"), caption = "Permutation Test P-Values")
-
 ```
 The permutation test results show that Pouring Method (p = 0.0007) and Consumption Method (p = 0.000) have statistically significant effects on Taste Rating at the $\alpha = 0.05$ level since they are both less than 0.05, meaning that both factors independently influence soda enjoyment. However, the Interaction effect (p = 0.6608) is not significant, indicating that the effect of Pouring Method does not depend on Consumption Method—each factor impacts taste perception independently rather than in combination. Since these results are derived from a permutation test, they are more reliable than traditional ANOVA due to assumption violations established earlier. This suggests that how soda is poured and how it is consumed both significantly impact enjoyment, but their effects do not interact, meaning neither factor amplifies or diminishes the impact of the other.
+
+
+Interaction Plot
+```{r}
+interaction.plot(
+  x.factor = soda_data$Pouring_Method,
+  trace.factor = soda_data$Consumption_Method,
+  response = soda_data$Taste_Rating,
+  fun = mean,
+  type = "b",       # lines and points
+  col = c("blue", "red"),
+  pch = c(19, 17),  # circle and triangle points
+  fixed = TRUE,     # ensure order doesn't shift
+  legend = TRUE,
+  xlab = "Pouring Method",
+  ylab = "Mean Taste Rating",
+  trace.label = "Consumption",
+  main = "Interaction Plot: Pouring vs Consumption"
+)
+```
 
 # Discussion
 
